@@ -1,10 +1,17 @@
-<h1>Lists</h1>
-{% if lists %}
-    <ul>
-    {% for list in lists %}
-        <li><a href="/todo/{{ list.id }}/">{{ list.name }}</a></li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>No lists.</p>
-{% endif %}
+{% extends "tmpl/base.html" %}
+
+{% block content %}
+
+    <h1>{% block title %}Lists{% endblock %}</h1>
+
+    {% if lists %}
+        <ul>
+        {% for list in lists %}
+            <li><a href="/todo/{{ list.id }}/">{{ list.name }}</a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p>No lists.</p>
+    {% endif %}
+
+{% endblock content %}
