@@ -1,0 +1,19 @@
+<h1>{{ list.name }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="/todo/{{ list.id }}/add/" method="post">
+{% csrf_token %}
+<input type="text" name="item" />
+<input type="submit" value="Add" />
+</form>
+
+{% if list.item_set.count > 0 %}
+<ul>
+{% for item in list.item_set.all %}
+    <li>{{ item.description }}</li>
+{% endfor %}
+</ul>
+{% else %}
+<p>No items here.</p>
+{% endif %}
