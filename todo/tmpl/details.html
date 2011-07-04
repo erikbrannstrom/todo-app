@@ -1,5 +1,25 @@
 {% extends "tmpl/base.html" %}
 
+{% block head %}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('ul').sortable({
+                update: function(event, ui) {
+                    $.ajax({
+                        url: '/todo/{{ list.id }}/move/',
+                        type: 'POST',
+                        data: { item_id: ui.item.context.id.substring(4),
+                                position: ui.item.index(),
+                                csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+
+                    });
+                    console.log("Move " + ui.item.context.id.substring(4) + " to " + ui.item.index());
+                }
+            })
+        });
+    </script>
+{% endblock head %}
+
 {% block content %}
 
     <h1>{% block title %}{{ list.name }}{% endblock %}</h1>
@@ -12,10 +32,10 @@
     <input type="submit" value="Add" />
     </form>
 
-    {% if list.item_set.count > 0 %}
+    {% if items.count > 0 %}
     <ul>
-    {% for item in list.item_set.all %}
-        <li>{{ item.description }}</li>
+    {% for item in items %}
+        <li id="item{{ item.id }}">{{ item.description }}</li>
     {% endfor %}
     </ul>
     {% else %}
