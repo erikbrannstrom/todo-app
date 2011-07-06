@@ -4,6 +4,14 @@
 
     <h1>{% block title %}Lists{% endblock %}</h1>
 
+    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+    <form action="/todo/create/" method="post">
+    {% csrf_token %}
+    <input type="text" name="name" />
+    <input type="submit" value="Create new list" />
+    </form>
+
     {% if lists %}
         <ul>
         {% for list in lists %}
