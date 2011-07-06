@@ -1,0 +1,13 @@
+{% extends "tmpl/base.html" %}
+
+{% block content %}
+    <h1>{% block title %}Register{% endblock %}</h1>
+
+    <p>Join the fun!</p>
+ 
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Register" />
+    </form>
+{% endblock %}

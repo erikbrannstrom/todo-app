@@ -83,7 +83,7 @@ STATICFILES_FINDERS = (
 )
 
 # Make this unique, and don't share it with anybody.
-SECRET_KEY = 'l^135&ah-vb@-&*a5qwt)+_gm!px8vo-@u-vhpl1h21sw23l(o'
+SECRET_KEY = 'l^135&ah-vb@-&*a5qwt)+_dksafhj193gm!px8vo-@u-vhpl1h21sw23l(o'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -145,3 +145,5 @@ LOGGING = {
         },
     }
 }
+
+LOGIN_URL = '/account/login/'
